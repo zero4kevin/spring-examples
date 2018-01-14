@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+          http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <var name="users" class="com.zero4kevin.spring.webflow.Users"/>
+
+    <view-state id="start" >
+        <transition on="addUser" to="newUser"/>
+        <transition on="showUsers" to="showUsers"/>
+    </view-state>
+
+    <view-state id="newUser" model="flowScope.user">
+        <on-entry>
+            <evaluate result="flowScope.user" expression="new com.zero4kevin.spring.webflow.Person()"/>
+        </on-entry>
+        <transition on="submit" to="saveUser"/>
+    </view-state>
+
+    <action-state id="saveUser">
+        <evaluate expression="users.setUsers(user)"/>
+        <transition to="showUsers"/>
+    </action-state>
+
+    <view-state id="showUsers" model="users">
+            <transition to="endState"/>
+    </view-state>
+
+    <end-state id="endState" />
+
+    <global-transitions>
+        <transition on="cancel" to="endState"/>
+    </global-transitions>
+
+</flow>
