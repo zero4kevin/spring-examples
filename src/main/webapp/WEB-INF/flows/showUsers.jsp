@@ -1,4 +1,5 @@
-<html xmlns:c="http://java.sun.com/jsp/jstl/core">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
 
 <head><title>Spring Web Flow - Show users</title></head>
 
@@ -11,6 +12,7 @@
             <c:out value="${user.details}" />
             </br>
 		</c:forEach>
+
 </body>
 
 </html>
