@@ -1,10 +1,21 @@
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:security="http://www.springframework.org/schema/security"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans
-           http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/security
-           http://www.springframework.org/schema/security/spring-security-3.0.xsd">
-
-
-</beans>
+           http://www.springframework.org/schema/security/spring-security.xsd">
+    <http auto-config="true">
+        <intercept-url pattern="/member" access="hasRole('ROLE_MEMBERS')"/>
+    </http>
+    <authentication-manager alias="authenticationManager">
+        <authentication-provider>
+            <user-service>
+                <user name="kevin" password="1234" authorities="ROLE_MEMBERS"/>
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+    <!--<user-service id="userService">-->
+        <!--<user name="kevin" password="1234" authorities="ROLE_MEMBERS"/>-->
+    <!--</user-service>-->
+</beans:beans>
