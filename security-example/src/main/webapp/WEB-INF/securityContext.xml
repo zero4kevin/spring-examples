@@ -5,13 +5,18 @@
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--<beans:bean id ="passwordEncoder" class = "org.springframework.security.crypto.password.NoOpPasswordEncoder" factory-method = "getInstance" />-->
+
     <http auto-config="true">
         <intercept-url pattern="/member" access="hasRole('ROLE_MEMBERS')"/>
     </http>
+
+
     <authentication-manager alias="authenticationManager">
         <authentication-provider>
             <user-service>
-                <user name="kevin" password="1234" authorities="ROLE_MEMBERS"/>
+                <user name="kevin" password="{noop}1234" authorities="ROLE_MEMBERS"/>
             </user-service>
         </authentication-provider>
     </authentication-manager>
