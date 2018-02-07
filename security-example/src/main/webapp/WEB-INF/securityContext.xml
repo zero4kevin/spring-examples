@@ -14,13 +14,9 @@
 
 
     <authentication-manager alias="authenticationManager">
-        <authentication-provider>
-            <user-service>
-                <user name="kevin" password="{noop}1234" authorities="ROLE_MEMBERS"/>
-            </user-service>
-        </authentication-provider>
+        <authentication-provider user-service-ref="userService"/>
     </authentication-manager>
-    <!--<user-service id="userService">-->
-        <!--<user name="kevin" password="1234" authorities="ROLE_MEMBERS"/>-->
-    <!--</user-service>-->
+    <user-service id="userService">
+        <user name="kevin" password="{noop}1234" authorities="ROLE_MEMBERS"/>
+    </user-service>
 </beans:beans>
