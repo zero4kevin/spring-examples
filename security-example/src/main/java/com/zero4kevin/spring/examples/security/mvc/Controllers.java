@@ -15,6 +15,6 @@ public class Controllers {
 
     @RequestMapping("/member")
     public String memberPage(){
-        return "members";
+        return "home";
     }
 }
