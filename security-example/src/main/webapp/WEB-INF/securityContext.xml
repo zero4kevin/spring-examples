@@ -6,17 +6,26 @@
            http://www.springframework.org/schema/security
            http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <!--<beans:bean id ="passwordEncoder" class = "org.springframework.security.crypto.password.NoOpPasswordEncoder" factory-method = "getInstance" />-->
+    <beans:bean id ="passwordEncoder" class = "org.springframework.security.crypto.password.NoOpPasswordEncoder" factory-method = "getInstance" />
 
     <http auto-config="true">
         <intercept-url pattern="/member" access="hasRole('ROLE_MEMBERS')"/>
     </http>
 
+    <beans:import resource="dataContext.xml"/>
 
     <authentication-manager alias="authenticationManager">
-        <authentication-provider user-service-ref="userService"/>
+        <authentication-provider>
+            <jdbc-user-service data-source-ref="dataSource"/>
+        </authentication-provider>
+        <!--<authentication-provider user-service-ref="userService"/>-->
     </authentication-manager>
-    <user-service id="userService">
-        <user name="kevin" password="{noop}1234" authorities="ROLE_MEMBERS"/>
-    </user-service>
+
+    <!--<beans:bean id="userService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">-->
+        <!--<beans:property name="dataSource" ref="dataSource" />-->
+    <!--</beans:bean>-->
+
+    <!--<user-service id="userService">-->
+        <!--<user name="kevin" password="{noop}1234" authorities="ROLE_MEMBERS"/>-->
+    <!--</user-service>-->
 </beans:beans>

@@ -10,7 +10,7 @@ This is a web application trial
 <h2>welcome <c:out value="${pageContext.request.remoteUser}"/></h2> <br/>
 <a href="/security-example/member">Please login</a>
 </security:authorize>
-<security:authorize access="hasRole('ROLE_MEMBERS')">
+<security:authorize access="hasRole('MEMBERS')">
 <h2>Hello <security:authentication property="principal.username" /></h2>
 <br/>
 <a href="<c:url value='/logout'/>">logout</a>
