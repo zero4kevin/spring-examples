@@ -1,11 +1,15 @@
 package com.zero4kevin.spring.examples.security.DTO;
 
+import com.zero4kevin.spring.examples.security.annotations.PasswordMatches;
+import com.zero4kevin.spring.examples.security.annotations.ValidEmail;
+
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 /**
  * Created by xi1zhang on 2018/2/13.
  */
+@PasswordMatches
 public class UserDTO {
     @NotNull
     @NotEmpty
@@ -22,6 +26,7 @@ public class UserDTO {
 
     @NotNull
     @NotEmpty
+    @ValidEmail
     private String email;
 
     public String getFirstName() {

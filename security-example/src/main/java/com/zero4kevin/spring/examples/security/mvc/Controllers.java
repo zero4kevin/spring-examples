@@ -19,25 +19,34 @@ import javax.validation.Valid;
 @Controller
 public class Controllers {
     @RequestMapping("/")
-    public String startPage(){
+    public String startPage() {
         return "home";
     }
 
     @RequestMapping("/member")
-    public String memberPage(){
+    public String memberPage() {
         return "home";
     }
 
-    @RequestMapping(value="/user/registration", method=RequestMethod.GET)
-    public String showRegistrationForm(WebRequest request, Model model){
-        UserDTO user= new UserDTO();
+    @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
+    public String showRegistrationForm(WebRequest request, Model model) {
+        UserDTO user = new UserDTO();
         model.addAttribute("user", user);
         return "registration";
     }
 
+    @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(
             @ModelAttribute("user") @Valid UserDTO accountDto,
             BindingResult result, WebRequest request, Errors errors) {
+//        User registered = new User();
         return new ModelAndView();
     }
+
+//    private User createUserAccount(UserDTO accountDto, BindingResult result) {
+//
+//        try {
+//
+//        return null;
+//    }
 }
