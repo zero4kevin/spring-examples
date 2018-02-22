@@ -16,7 +16,10 @@
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider>
-            <jdbc-user-service data-source-ref="dataSource"/>
+            <jdbc-user-service data-source-ref="dataSource"
+                               users-by-username-query="select username, password, true from users where username=?"
+                               authorities-by-username-query="select username, authority from authorities where username=?"
+            />
         </authentication-provider>
         <!--<authentication-provider user-service-ref="userService"/>-->
     </authentication-manager>
@@ -28,4 +31,6 @@
     <!--<user-service id="userService">-->
         <!--<user name="kevin" password="{noop}1234" authorities="ROLE_MEMBERS"/>-->
     <!--</user-service>-->
+
+    <!--<beans:bean id="userService" class="com.zero4kevin.spring.examples.security.MyUserDetailsService" />-->
 </beans:beans>

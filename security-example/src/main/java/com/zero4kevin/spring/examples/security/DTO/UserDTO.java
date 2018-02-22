@@ -11,6 +11,11 @@ import javax.validation.constraints.NotNull;
  */
 @PasswordMatches
 public class UserDTO {
+
+    @NotNull
+    @NotEmpty
+    private String accountName;
+
     @NotNull
     @NotEmpty
     private String firstName;
@@ -28,6 +33,14 @@ public class UserDTO {
     @NotEmpty
     @ValidEmail
     private String email;
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
 
     public String getFirstName() {
         return firstName;

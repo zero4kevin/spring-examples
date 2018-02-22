@@ -4,16 +4,21 @@ import com.zero4kevin.spring.examples.security.DTO.MyUser;
 import com.zero4kevin.spring.examples.security.DTO.UserDTO;
 import com.zero4kevin.spring.examples.security.exceptions.EmailExistsException;
 import com.zero4kevin.spring.examples.security.interfaces.IUserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 
 /**
  * Created by xi1zhang on 2018/2/14.
+ * The class provides service to create users, remove users and so on
  */
 public class MyUserService implements IUserService {
-    @AutoWired
+    @Autowired
     MyUserDao myUserDao;
 
+    @Transactional
+    @Override
     public MyUser registerNewUserAccount(UserDTO accountDto) throws EmailExistsException {
 
         if (emailExist(accountDto.getEmail())) {
@@ -33,6 +38,5 @@ public class MyUserService implements IUserService {
             return true;
         }
         return false;
-    }
     }
 }

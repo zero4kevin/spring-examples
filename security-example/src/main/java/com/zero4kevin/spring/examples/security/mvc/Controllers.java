@@ -1,6 +1,9 @@
 package com.zero4kevin.spring.examples.security.mvc;
 
+import com.zero4kevin.spring.examples.security.DTO.MyUser;
 import com.zero4kevin.spring.examples.security.DTO.UserDTO;
+import com.zero4kevin.spring.examples.security.MyUserService;
+import com.zero4kevin.spring.examples.security.exceptions.EmailExistsException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
@@ -28,25 +31,39 @@ public class Controllers {
         return "home";
     }
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.GET)
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public String showRegistrationForm(WebRequest request, Model model) {
         UserDTO user = new UserDTO();
         model.addAttribute("user", user);
         return "registration";
     }
 
-    @RequestMapping(value = "/user/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView registerUserAccount(
             @ModelAttribute("user") @Valid UserDTO accountDto,
             BindingResult result, WebRequest request, Errors errors) {
-//        User registered = new User();
-        return new ModelAndView();
+        MyUser registered = new MyUser();
+        if (!result.hasErrors()) {
+            registered = createUserAccount(accountDto, result);
+        }
+        if (registered == null) {
+            result.rejectValue("email", "message.regError");
+        }
+        if (result.hasErrors()) {
+            return new ModelAndView("registration", "user", accountDto);
+        }
+        else {
+            return new ModelAndView("successRegister", "user", accountDto);
+        }
     }
 
-//    private User createUserAccount(UserDTO accountDto, BindingResult result) {
-//
-//        try {
-//
-//        return null;
-//    }
+
+
+    private MyUser createUserAccount(UserDTO accountDto, BindingResult result) {
+        try {
+            return new MyUserService().registerNewUserAccount(accountDto);
+        } catch (EmailExistsException e) {
+            return null;
+        }
+    }
 }

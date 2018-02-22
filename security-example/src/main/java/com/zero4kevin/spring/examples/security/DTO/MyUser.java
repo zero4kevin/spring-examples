@@ -10,7 +10,17 @@ public class MyUser {
 
     private int id;
 
+    private String accountName;
     private String firstName;
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+
     private String lastName;
     private String password;
     private String confirmPassword;
