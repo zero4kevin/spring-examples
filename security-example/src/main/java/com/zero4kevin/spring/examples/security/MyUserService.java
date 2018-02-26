@@ -1,10 +1,14 @@
 package com.zero4kevin.spring.examples.security;
 
+import com.zero4kevin.spring.examples.security.DAO.MemberDao;
 import com.zero4kevin.spring.examples.security.DTO.MyUser;
 import com.zero4kevin.spring.examples.security.DTO.UserDTO;
 import com.zero4kevin.spring.examples.security.exceptions.EmailExistsException;
 import com.zero4kevin.spring.examples.security.interfaces.IUserService;
+import com.zero4kevin.spring.examples.security.interfaces.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -13,14 +17,19 @@ import java.util.Arrays;
  * Created by xi1zhang on 2018/2/14.
  * The class provides service to create users, remove users and so on
  */
-public class MyUserService implements IUserService {
+@Component
+public class MyUserService {
+
+    private static UserDao  myUserDao;
+
     @Autowired
-    MyUserDao myUserDao;
+    public MyUserService(UserDao userDao){
+        System.out.println("setting my dao");
+        MyUserService.myUserDao=userDao;
+    }
 
     @Transactional
-    @Override
-    public MyUser registerNewUserAccount(UserDTO accountDto) throws EmailExistsException {
-
+     public static MyUser registerNewUserAccount(UserDTO accountDto) throws EmailExistsException {
         if (emailExist(accountDto.getEmail())) {
             throw new EmailExistsException("There is an account with that email address:"  + accountDto.getEmail());
         }
@@ -32,8 +41,8 @@ public class MyUserService implements IUserService {
         user.setRoles(Arrays.asList("ROLE_USER"));
         return myUserDao.save(user);
     }
-    private boolean emailExist(String email) {
-        MyUser user = MyUserDao.findByEmail(email);
+    private static boolean emailExist(String email) {
+        MyUser user = myUserDao.findByEmail(email);
         if (user != null) {
             return true;
         }

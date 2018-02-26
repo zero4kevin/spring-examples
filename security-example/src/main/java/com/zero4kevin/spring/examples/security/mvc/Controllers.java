@@ -16,11 +16,13 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 
+
 /**
  * Created by kevin on 2/3/18.
  */
 @Controller
 public class Controllers {
+
     @RequestMapping("/")
     public String startPage() {
         return "home";
@@ -53,7 +55,7 @@ public class Controllers {
             return new ModelAndView("registration", "user", accountDto);
         }
         else {
-            return new ModelAndView("successRegister", "user", accountDto);
+            return new ModelAndView("home", "user", accountDto);
         }
     }
 
@@ -61,7 +63,7 @@ public class Controllers {
 
     private MyUser createUserAccount(UserDTO accountDto, BindingResult result) {
         try {
-            return new MyUserService().registerNewUserAccount(accountDto);
+            return MyUserService.registerNewUserAccount(accountDto);
         } catch (EmailExistsException e) {
             return null;
         }

@@ -11,9 +11,7 @@ import java.util.List;
  * Created by xi1zhang on 2018/2/14.
  * This class runs all operations on DB
  */
-@Repository
 public class MyUserDao {
-    @PersistenceContext
     private static EntityManager entityManager;
 
     public static MyUser findByEmail(final String email){
