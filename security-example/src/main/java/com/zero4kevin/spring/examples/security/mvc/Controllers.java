@@ -53,7 +53,7 @@ public class Controllers {
             return new ModelAndView("registration", "user", accountDto);
         }
         else {
-            return new ModelAndView("successRegister", "user", accountDto);
+            return new ModelAndView("home", "user", accountDto);
         }
     }
 

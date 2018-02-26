@@ -1,5 +1,6 @@
 package com.zero4kevin.spring.examples.security;
 
+import com.zero4kevin.spring.examples.security.DAO.MemberDao;
 import com.zero4kevin.spring.examples.security.DTO.MyUser;
 import com.zero4kevin.spring.examples.security.DTO.UserDTO;
 import com.zero4kevin.spring.examples.security.exceptions.EmailExistsException;
@@ -14,8 +15,9 @@ import java.util.Arrays;
  * The class provides service to create users, remove users and so on
  */
 public class MyUserService implements IUserService {
+//    MyUserDao myUserDao;
     @Autowired
-    MyUserDao myUserDao;
+    MemberDao myUserDao=new MemberDao();
 
     @Transactional
     @Override
@@ -33,7 +35,7 @@ public class MyUserService implements IUserService {
         return myUserDao.save(user);
     }
     private boolean emailExist(String email) {
-        MyUser user = MyUserDao.findByEmail(email);
+        MyUser user = myUserDao.findByEmail(email);
         if (user != null) {
             return true;
         }

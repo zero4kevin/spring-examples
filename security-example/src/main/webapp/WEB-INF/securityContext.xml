@@ -12,7 +12,7 @@
         <intercept-url pattern="/member" access="hasRole('ROLE_MEMBERS')"/>
     </http>
 
-    <beans:import resource="dataContext.xml"/>
+    <!--<beans:import resource="dataContext.xml"/>-->
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider>

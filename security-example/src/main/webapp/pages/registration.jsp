@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>Create a new user</head>
@@ -35,7 +36,7 @@
 	</tr>
 	<tr>
       <td></td>
-      <td><a href="/">Home</a></td>
+      <td><a href="/security-example">Home</a></td>
    </tr>
 </table>
 </form:form>

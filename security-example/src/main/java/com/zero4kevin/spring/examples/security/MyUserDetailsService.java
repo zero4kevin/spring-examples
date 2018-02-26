@@ -1,6 +1,8 @@
 package com.zero4kevin.spring.examples.security;
 
+import com.zero4kevin.spring.examples.security.DAO.MemberDao;
 import com.zero4kevin.spring.examples.security.DTO.MyUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,7 +17,9 @@ import java.util.List;
  * Created by kevin on 2/15/18.
  */
 public class MyUserDetailsService implements UserDetailsService {
-    private MyUserDao myUserDao;
+//    private MyUserDao myUserDao;
+    @Autowired
+    private MemberDao myUserDao;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
