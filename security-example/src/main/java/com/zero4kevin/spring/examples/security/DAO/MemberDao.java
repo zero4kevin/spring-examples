@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.sql.DataSource;
 import java.sql.ResultSet;
@@ -17,7 +18,8 @@ import java.util.List;
  */
 @Repository("myUserDao")
 public class MemberDao implements UserDao{
-    private  final String USER_TABLE = "users";
+    private final String USER_TABLE = "users";
+    private final String AUTHORITY_TABLE= "authorities";
 
     private  JdbcTemplate jdbcTemplate;
 
@@ -49,13 +51,16 @@ public class MemberDao implements UserDao{
         return userList.size()>0?userList.get(0):null;
     }
 
-
+    @Transactional
     public MyUser save(MyUser user) {
-        String sql = "insert int " + USER_TABLE + " values ('" + user.getAccountName() + "', '" + user.getFirstName() + "', '"
+        String sql = "insert into " + USER_TABLE + " values ('" + user.getAccountName() + "', '" + user.getFirstName() + "', '"
                 + user.getLastName() + "', '" + user.getEmail() + "', '" + user.getPassword() + "', true)";
+        String sql1 = "insert into " + AUTHORITY_TABLE + " values ('" + user.getAccountName() + "', 'ROLE_MEMBERS')";
         try {
             jdbcTemplate.update(sql);
+            jdbcTemplate.update(sql1);
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         }
         return user;

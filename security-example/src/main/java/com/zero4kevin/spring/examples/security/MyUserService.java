@@ -1,17 +1,12 @@
 package com.zero4kevin.spring.examples.security;
 
-import com.zero4kevin.spring.examples.security.DAO.MemberDao;
 import com.zero4kevin.spring.examples.security.DTO.MyUser;
 import com.zero4kevin.spring.examples.security.DTO.UserDTO;
 import com.zero4kevin.spring.examples.security.exceptions.EmailExistsException;
-import com.zero4kevin.spring.examples.security.interfaces.IUserService;
 import com.zero4kevin.spring.examples.security.interfaces.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Arrays;
 
 /**
  * Created by xi1zhang on 2018/2/14.
@@ -34,11 +29,13 @@ public class MyUserService {
             throw new EmailExistsException("There is an account with that email address:"  + accountDto.getEmail());
         }
         MyUser user = new MyUser();
+        user.setAccountName(accountDto.getAccountName());
         user.setFirstName(accountDto.getFirstName());
         user.setLastName(accountDto.getLastName());
         user.setPassword(accountDto.getPassword());
         user.setEmail(accountDto.getEmail());
-        user.setRoles(Arrays.asList("ROLE_USER"));
+        //user.setRoles(Arrays.asList("ROLE_USER"));
+        System.out.println(user.toString());
         return myUserDao.save(user);
     }
     private static boolean emailExist(String email) {
