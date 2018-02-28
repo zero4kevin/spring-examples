@@ -3,7 +3,6 @@ package com.zero4kevin.spring.examples.security.DAO;
 import com.zero4kevin.spring.examples.security.DTO.MyUser;
 import com.zero4kevin.spring.examples.security.interfaces.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -50,7 +49,7 @@ public class MemberDao implements UserDao{
         return userList.size()>0?userList.get(0):null;
     }
 
-    @Override
+
     public MyUser save(MyUser user) {
         String sql = "insert int " + USER_TABLE + " values ('" + user.getAccountName() + "', '" + user.getFirstName() + "', '"
                 + user.getLastName() + "', '" + user.getEmail() + "', '" + user.getPassword() + "', true)";

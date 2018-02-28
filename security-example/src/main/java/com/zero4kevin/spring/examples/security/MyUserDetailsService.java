@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class MyUserDetailsService implements UserDetailsService {
 //    private MyUserDao myUserDao;
-//    @Autowired
+    @Autowired
     private MemberDao myUserDao;
 
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
