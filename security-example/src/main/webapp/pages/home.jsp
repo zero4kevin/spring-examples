@@ -15,10 +15,12 @@ This is a web application trial
 <security:authorize access="hasRole('MEMBERS')">
 <h2>Hello <security:authentication property="principal.username" /></h2>
 <br/>
+
 <form:form action="logout" method="POST">
 <!--${pageContext.request.contextPath}/logout -->
     <input type="submit" value="logout" />
 </form:form>
+
 </security:authorize>
 </body>
 
