@@ -1,5 +1,4 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 This is a web application trial
@@ -14,7 +13,7 @@ This is a web application trial
 <security:authorize access="hasRole('MEMBERS')">
 <h2>Hello <security:authentication property="principal.username" /></h2>
 <br/>
-<a href="<c:url value='/logout'/>">logout</a>
+<a href="/security-example/logout">logout</a>
 </security:authorize>
 </body>
 
