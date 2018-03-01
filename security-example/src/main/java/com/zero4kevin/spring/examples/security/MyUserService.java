@@ -19,7 +19,7 @@ public class MyUserService {
 
     @Autowired
     public MyUserService(UserDao userDao){
-        System.out.println("setting my dao");
+//        System.out.println("setting my dao");
         MyUserService.myUserDao=userDao;
     }
 
