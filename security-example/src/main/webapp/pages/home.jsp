@@ -1,5 +1,6 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
 This is a web application trial
@@ -14,7 +15,10 @@ This is a web application trial
 <security:authorize access="hasRole('MEMBERS')">
 <h2>Hello <security:authentication property="principal.username" /></h2>
 <br/>
-<a href="<c:url value='/logout'/>">logout</a>
+<form:form action="logout" method="POST">
+<!--${pageContext.request.contextPath}/logout -->
+    <input type="submit" value="logout" />
+</form:form>
 </security:authorize>
 </body>
 

@@ -8,27 +8,27 @@
 <table>
 	<tr>
 		<td><form:label path="accountName">User Name</form:label></td>
-		<td><form:input path="accountName" name="accountName" id="username" /></td>
+		<td><form:input path="accountName" id="username" /></td>
 	</tr>
 	<tr>
 		<td><form:label path="firstName">Given Name</form:label></td>
-		<td><form:input path="firstName" name="givenname" id="givenname"/></td>
+		<td><form:input path="firstName"  id="givenname"/></td>
     </tr>
 	<tr>
 		<td><form:label path="lastName">Surname</form:label></td>
-		<td><form:input path="lastName" name="surname" id="surname"/></td>
+		<td><form:input path="lastName"  id="surname"/></td>
 	</tr>
 	<tr>
 		<td><form:label path="password">Password</form:label></td>
-		<td><form:input path="password" name="password" id="password"/></td>
+		<td><form:password path="password"  id="password"/></td>
 	</tr>
 	<tr>
 		<td><form:label path="confirmPassword">Confirm Password</form:label></td>
-		<td><form:input path="confirmPassword" name="confirmpassword" id="confirmpassword"/></td>
+		<td><form:password path="confirmPassword" id="confirmpassword"/></td>
 	</tr>
 	<tr>
 		<td><form:label path="email">Email</form:label></td>
-		<td><form:input path="email" name="email" id="email" /></td>
+		<td><form:input path="email"  id="email" /></td>
 	</tr>
 	<tr>
 		<td></td>
