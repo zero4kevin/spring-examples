@@ -10,5 +10,6 @@
     <modules>
         <module>webflow-example</module>
         <module>security-example</module>
+        <module>soap-example</module>
     </modules>
 </project>
