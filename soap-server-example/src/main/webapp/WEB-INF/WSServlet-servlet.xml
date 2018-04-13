@@ -3,8 +3,11 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd">
-
     <bean class="org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter" >
-        <property name="baseAddress" value="http://localhost:8080/soap-example/" />
+        <property name="baseAddress" value="http://localhost:8086/" />
     </bean>
+
+    <bean id="helloWorld" class="com.zero4kevin.spring.examples.soap.HelloWorldImpl"/>
+    <bean class="com.zero4kevin.spring.examples.soap.HelloSoapEndpoint"/>
+
 </beans>

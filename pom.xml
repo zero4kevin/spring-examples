@@ -10,6 +10,7 @@
     <modules>
         <module>webflow-example</module>
         <module>security-example</module>
-        <module>soap-example</module>
+        <module>soap-server-example</module>
+	    <module>webservice-client-examples</module>
     </modules>
 </project>
