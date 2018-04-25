@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.sql.DataSource;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by xi1zhang on 2018/4/19.
@@ -21,16 +22,15 @@ public class UserService {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private String createSql="insert into Person values (";
-
     public void create(Person person){
-        String sql=createSql+person.getName()+","+person.getSex()+","+person.getAge()+")";
+        String sql="insert into Person values (";
+        sql=sql+person.getName()+","+person.getSex()+","+person.getAge()+")";
         jdbcTemplate.update(sql);
     }
 
-    public Person query(String name){
-        String sql="select * from Person where name="+name;
-        return jdbcTemplate.queryForObject(sql, Person.class);
+    public List<Person> query(String name){
+        String sql="select * from Person where name='"+name+"'";
+//        return jdbcTemplate.queryForObject(sql, Person.class);
 //        return (Person)jdbcTemplate.query(sql, new ResultSetExtractor<Person>(){
 //            public Person extractData(ResultSet resultSet) throws SQLException, DataAccessException {
 //                Person person=new Person();
@@ -39,6 +39,15 @@ public class UserService {
 //                person.setSex(resultSet.getString(3));
 //                return person;
 //            }});
+        return jdbcTemplate.query(sql, new RowMapper<Person>() {
+            public Person mapRow(ResultSet resultSet, int i) throws SQLException {
+                Person person=new Person();
+                person.setName(resultSet.getString("name"));
+                person.setAge(resultSet.getInt("age"));
+                person.setSex(resultSet.getString("sex"));
+                return person;
+            }
+        });
 
     }
 

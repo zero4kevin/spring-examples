@@ -17,12 +17,12 @@ public class PersonController {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value = "/{name}", method = RequestMethod.GET)
+    @RequestMapping(value = "{name}", method = RequestMethod.GET)
     public @ResponseBody Person getUserInformation(@PathVariable String name){
-        return userService.query(name);
+        return userService.query(name).get(0);
     }
 
-    @RequestMapping(value ="/{name}", method = RequestMethod.DELETE)
+    @RequestMapping(value ="{name}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void removeUser(@PathVariable String name){
         userService.delete(name);

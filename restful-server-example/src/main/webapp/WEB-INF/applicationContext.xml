@@ -9,8 +9,9 @@
            http://www.springframework.org/schema/context/spring-context.xsd
            http://www.springframework.org/schema/mvc
            http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-    <mvc:annotation-driven />
+
     <context:component-scan base-package="com.zero4kevin.spring.examples.rest.*"/>
+    <mvc:annotation-driven />
 
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="org.h2.Driver"/>
@@ -20,23 +21,32 @@
         <property name="initialSize" value="5" />
         <property name="maxTotal" value="10" />
     </bean>
+
     <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
         <constructor-arg ref="dataSource"/>
     </bean>
 
-    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManager">
+    <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
         <property name="ignoreAcceptHeader" value="true"/>
         <property name="defaultContentType" value="text/html"/>
         <property name="mediaTypes">
             <map>
                 <entry key="html" value="text/html"/>
                 <entry key="json" value="application/json"/>
+                <entry key="xml"  value="application/xml" />
             </map>
         </property>
     </bean>
+
     <bean id="contentNegotiationViewResolver" class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-        <constructor-arg ref="contentNegotiationManager" />
+        <property name="contentNegotiationManager" ref="contentNegotiationManager"/>
     </bean>
-<!--//http://www.mkyong.com/spring-mvc/spring-3-mvc-contentnegotiatingviewresolver-example/-->
-    <bean class="" 
+
+    <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"/>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="2"/>
+    </bean>
 </beans>

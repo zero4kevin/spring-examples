@@ -1,12 +1,8 @@
-package com.zero4kevin.spring.examples.rest.model;
-
-<<<<<<< HEAD
-import org.springframework.stereotype.Component;
+package com.zero4kevin.spring.examples.client.model;
 
 /**
- * Created by xi1zhang on 2018/4/18.
+ * Created by xi1zhang on 2018/4/24.
  */
-@Component
 public class Person {
     String name;
     int age;

@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class APP {
     public static void main(String[] args){
         ApplicationContext applicationContext= new ClassPathXmlApplicationContext("com/zero4kevin/spring/examples/client/applicationContext.xml");
-        Client client=(Client) applicationContext.getBean("client");
+        RestfulClient client=(RestfulClient) applicationContext.getBean("client");
         System.out.println(client.action());
     }
 }
