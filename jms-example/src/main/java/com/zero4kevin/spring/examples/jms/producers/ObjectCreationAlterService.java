@@ -13,7 +13,7 @@ import javax.jms.Session;
 /**
  * Created by kevin on 7/1/18.
  */
-@Component
+@Component("alterService")
 public class ObjectCreationAlterService implements AlterService {
     @Autowired
     private JmsTemplate jmsTemplate;

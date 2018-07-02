@@ -33,4 +33,13 @@ public class Hunter implements Serializable{
     public void setRank(Ranks rank) {
         this.rank = rank;
     }
+
+    @Override
+    public String toString() {
+        return "Hunter{" +
+                "name='" + name + '\'' +
+                ", skill=" + skill +
+                ", rank=" + rank +
+                '}';
+    }
 }

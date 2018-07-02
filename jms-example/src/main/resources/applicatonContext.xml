@@ -2,14 +2,14 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="
-       http://www.springframework.org/schema/beans
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
-       htpp://www.springframework.org/schema/spring-context.xsd">
+       http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:component-scan base-package="com.zero4kevin.spring.examples.jms" />
-    
+    <context:component-scan base-package="com.zero4kevin.spring.examples.jms.*" />
+
+
     <bean id="broker" class="org.apache.activemq.ActiveMQConnectionFactory" >
         <property name="brokerURL" value="tcp://localhost:61616" />
     </bean>
@@ -20,6 +20,7 @@
 
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate" >
         <property name="connectFactory" ref="broker"/>
+        <property name="defaultDestinationName" value="no1" />
     </bean>
 
 </beans>
