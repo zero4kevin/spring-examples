@@ -13,5 +13,6 @@
         <module>soap-server-example</module>
         <module>webservice-client-examples</module>
 	<module>restful-server-example</module>
+        <module>jms-example</module>
     </modules>
 </project>
