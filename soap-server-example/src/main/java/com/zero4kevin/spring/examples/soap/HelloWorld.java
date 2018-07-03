@@ -7,8 +7,8 @@ import javax.jws.soap.SOAPBinding;
 /**
  * Created by xi1zhang on 2018/4/11.
  */
-@Service
-@SOAPBinding(style= SOAPBinding.Style.DOCUMENT)
+//@Service
+//@SOAPBinding(style= SOAPBinding.Style.DOCUMENT)
 public interface HelloWorld {
     public String sayHello();
 }

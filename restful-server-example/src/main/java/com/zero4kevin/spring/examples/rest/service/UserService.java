@@ -23,8 +23,8 @@ public class UserService {
     private JdbcTemplate jdbcTemplate;
 
     public void create(Person person){
-        String sql="insert into Person values (";
-        sql=sql+person.getName()+","+person.getSex()+","+person.getAge()+")";
+        String sql="insert into Person (name,sex,age,) values (";
+        sql=sql+"'"+person.getName()+"'"+","+"'"+person.getSex()+"'"+","+"'"+person.getAge()+"'"+")";
         jdbcTemplate.update(sql);
     }
 
@@ -52,7 +52,7 @@ public class UserService {
     }
 
     public void delete(String name){
-        String sql="delete from Person where name="+name;
+        String sql="delete from Person where name='"+name+"'";
         jdbcTemplate.update(sql);
     }
 

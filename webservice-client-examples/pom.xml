@@ -42,6 +42,12 @@
       <artifactId>httpclient</artifactId>
       <version>4.5.5</version>
     </dependency>
+    <!-- for json automatically converted-->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.2</version>
+    </dependency>
 
   </dependencies>
 </project>

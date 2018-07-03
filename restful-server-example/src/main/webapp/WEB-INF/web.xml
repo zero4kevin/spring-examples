@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee">
+
+    <!--
+    The configuration is loaded when web.xml initials, if it is configured in ContextLoaderListener.
+    The configuration is loaded when a request comes, if it is configured in servlet.
+    -->
     <!--<context-param>-->
         <!--<param-name>contextConfigLocation</param-name>-->
         <!--<param-value>/WEB-INF/applicationContext.xml</param-value>-->

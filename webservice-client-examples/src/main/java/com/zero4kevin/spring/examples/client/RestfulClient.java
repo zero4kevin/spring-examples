@@ -1,14 +1,19 @@
 package com.zero4kevin.spring.examples.client;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+
 import java.net.URI;
 
 /**
  * Created by xi1zhang on 2018/4/13.
  */
 public interface RestfulClient {
-    public Object action();
+    public Object get(URI uri);
 
-    public Object post(URI uri, Object object);
+    public Object get(String uri);
 
-    public Object post(String uri, Object object);
+    public int post(URI uri, Object request);
+
+    public int post(String uri, Object request);
 }
